@@ -1,53 +1,38 @@
-import java.util.Scanner;
-public class MyBigNumber{
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-		System.out.println("Nhap so thu nhat");
-        String a = sc.nextLine();
-		System.out.println("Nhap so thu hai");
-        String b = sc.nextLine();
-        System.out.println(Tong(a,b));
+/**
+ * Tác giả: Hoàng Việt Anh
+ * Desrciption.
+ * Class MyBigNumber là lớp để tính tổng của 2 số s1 và s2.
+ * Hàm sum trong Class MyBigNumber là hàm để thực hiện phép cộng 2 chuỗi số.
+ */
+ 
+public class MyBigNumber {   
+    
+    public String sum(final String s1,final String s2) {       
         
+        String finalResult = "";                  
+        int dodai1 = s1.length();                    
+        int dodai2 = s2.length();                   
+        int sosanhdodai = (dodai1 > dodai2) ? dodai1 : dodai2;
+        int vitri1;                                  
+        int vitri2;
+        char laykitu1;
+        char laykitu2;
+        int biennho = 0;                               
+        int s = 0;                                      
+        
+        for (int i = 0; i < sosanhdodai; i++) {
+            vitri1 = dodai1 - i - 1;                   
+            vitri2 = dodai2 - i - 1;
+            laykitu1 = (vitri1 >= 0) ? s1.charAt(vitri1) : '0';
+            laykitu2 = (vitri2 >= 0) ? s2.charAt(vitri2) : '0';
+            s = (laykitu1 - '0') + (laykitu2 - '0') + biennho;                
+            finalResult = (s % 10) + finalResult;                            
+            biennho = s / 10;
+        }
+        if (biennho >= 1) {                              
+            finalResult = 1 + finalResult;       
+        }
+        
+        return finalResult;
     }
-    public static String Tong( String str1 , String str2)
-    { 			
-		int t = 1;
-		String Tong = "";
-        String a = str1;
-        String b = str2;
-		int Bonho = 0;
-        int Tongso = 0;
-        if (a.length() < b.length())
-        { 
-            String item = b;
-            b = a;
-            a = item;
-        } 
-        while (a.length() - t >= 0)
-        {
-            if (b.length() - t < 0) 
-            {
-                 Tongso = a.charAt(a.length() - t)-'0' + Bonho;
-            } 
-			else
-            {     
-				Tongso = a.charAt(a.length() - t)-'0' + b.charAt(b.length() - t)-'0' + Bonho;
-            }
-            if (Tongso < 10)
-            {
-                Bonho = 0;
-            } 
-			else
-            {
-                Bonho = 1;
-            }
-            Tong = Integer.toString(Tongso % 10) + Tong;
-            t++ ;
-        }
-        if (Bonho == 1)
-        {
-            Tong = Integer.toString(Bonho) + Tong;
-        }
-        return Tong;
-    }  
 }
